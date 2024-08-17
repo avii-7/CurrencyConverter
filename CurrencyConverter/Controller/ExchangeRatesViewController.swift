@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ExchangeRatesViewController.swift
 //  CurrencyConverter
 //
 //  Created by Arun on 14/08/24.
@@ -7,13 +7,13 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ExchangeRatesViewController: UIViewController {
     
     private var currencyConverterView: CurrencyConverterView!
     
-    let viewModel: CurrencyViewModel
+    let viewModel: ExchangeRatesViewModel
     
-    init(viewModel: CurrencyViewModel) {
+    init(viewModel: ExchangeRatesViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -39,13 +39,18 @@ class ViewController: UIViewController {
         
         currencyConverterView.animate(value: true)
         currencyConverterView.placeholderLabel.isHidden = false
-        
-        viewModel.fetchCurrencies { [weak self] in
-            guard let self else { return }
-            DispatchQueue.main.async {
+        fetchExchangeRates()
+    }
+    
+    private func fetchExchangeRates() {
+        Task { @MainActor in
+            do {
+                try await viewModel.fetchExchangeRates()
                 self.currencyConverterView.animate(value: false)
-//                self.currencyConverterView.currencySelectorTextField.text = self.viewModel.supportedCurrencies.first
                 self.currencyConverterView.currencyCollectionView.reloadData()
+            }
+            catch {
+                // Todo: show alert
             }
         }
     }
@@ -66,7 +71,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController : UITextFieldDelegate {
+extension ExchangeRatesViewController : UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
         
@@ -100,7 +105,7 @@ extension ViewController : UITextFieldDelegate {
     }
 }
 
-extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension ExchangeRatesViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
@@ -119,7 +124,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 }
 
-extension ViewController : UICollectionViewDataSource {
+extension ExchangeRatesViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.currencies.count

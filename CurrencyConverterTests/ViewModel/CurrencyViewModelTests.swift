@@ -10,7 +10,7 @@ import XCTest
 
 final class CurrencyViewModelTests: XCTestCase {
     
-    private var viewModel: CurrencyViewModel!
+    private var viewModel: ExchangeRatesViewModel!
     
     private var mockCurrencyResource: MockCurrencyResource!
     
@@ -19,7 +19,7 @@ final class CurrencyViewModelTests: XCTestCase {
     override func setUp() {
         mockCurrencyResource = MockCurrencyResource()
         mockCurrencyRepository = MockCurrencyRepository()
-        viewModel = CurrencyViewModel(repository: mockCurrencyRepository, currencyResource: mockCurrencyResource)
+        viewModel = ExchangeRatesViewModel(repository: mockCurrencyRepository, currencyResource: mockCurrencyResource)
     }
 
     override func tearDown() {

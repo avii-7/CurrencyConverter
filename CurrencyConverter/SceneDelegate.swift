@@ -13,16 +13,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let vm = CurrencyViewModel()
-        let vc = ViewController(viewModel: vm)
-
-        let navigationController = UINavigationController(rootViewController: vc)
-        window?.rootViewController = navigationController
-        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        configureWindow()
+    }
+    
+    private func configureWindow() {
+        let navigationController = UINavigationController(rootViewController: makeRootViewController())
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+    
+    private func makeRootViewController() -> UIViewController {
+        ExchangeRatesFactory.makeModule()
     }
 }
 

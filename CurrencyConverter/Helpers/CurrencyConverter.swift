@@ -19,10 +19,6 @@ struct CurrencyConverter {
         
         // Convert currency1 to baseCurrency price:
         
-        if currency2 == "CAD" {
-            print("Yes")
-        }
-        
         guard let currency1basePrice = currencies[currency1] else {
             return 0
         }

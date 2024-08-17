@@ -1,5 +1,5 @@
 //
-//  RestAPIRequestProtocol.swift
+//  RestAPIRequest.swift
 //  CurrencyConverter
 //
 //  Created by Arun on 14/08/24.

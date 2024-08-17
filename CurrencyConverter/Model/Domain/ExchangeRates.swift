@@ -13,6 +13,8 @@ class ExchangeRates {
     
     var rates: [String: Double]
     
+    // Todo: - Check default values needed or not ?
+    
     init(baseCurrency: String = "", rates: [String : Double] = [String: Double]()) {
         self.baseCurrency = baseCurrency
         self.rates = rates
