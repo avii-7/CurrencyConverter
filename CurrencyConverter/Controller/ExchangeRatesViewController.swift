@@ -11,10 +11,13 @@ class ExchangeRatesViewController: UIViewController {
     
     private var currencyConverterView: CurrencyConverterView!
     
-    let viewModel: ExchangeRatesViewModel
+    private let viewModel: ExchangeRatesViewModel
     
-    init(viewModel: ExchangeRatesViewModel) {
+    private let currencyConverter: CurrencyConverter
+    
+    init(viewModel: ExchangeRatesViewModel, currencyConverter: CurrencyConverter) {
         self.viewModel = viewModel
+        self.currencyConverter = currencyConverter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,7 +41,6 @@ class ExchangeRatesViewController: UIViewController {
         super.viewWillAppear(animated)
         
         currencyConverterView.animate(value: true)
-        currencyConverterView.placeholderLabel.isHidden = false
         fetchExchangeRates()
     }
     
@@ -56,7 +58,7 @@ class ExchangeRatesViewController: UIViewController {
     }
     
     private func configureCurrencyInputTextField() {
-        currencyConverterView.currencyInputTextField.delegate = self
+        currencyConverterView.currencyAmountTextField.delegate = self
     }
     
     private func configureCurrencySelectorTextField() {
@@ -71,39 +73,28 @@ class ExchangeRatesViewController: UIViewController {
     }
 }
 
+// MARK: - UITextField Delegates.
+
 extension ExchangeRatesViewController : UITextFieldDelegate {
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard textField == currencyConverterView.currencyAmountTextField else { return }
         
-        guard
-            let text = textField.text,
-            let amount = Double(text) else {
-            currencyConverterView.placeholderLabel.isHidden = false
-            currencyConverterView.currencyCollectionView.isHidden = true
-            return
-        }
-        
-        currencyConverterView.placeholderLabel.isHidden = true
-        currencyConverterView.currencyCollectionView.isHidden = false
-        
-        let selectedCurrency = currencyConverterView.currencySelectorTextField.text
-        
+        // Todo: Add debouncing
         if
-            
-            
-            let selectedCurrency {
-            
-            viewModel.onAmountEntered(amount: amount, currency: selectedCurrency)
+            let selectecdCurrency = currencyConverterView.selectedCurrency,
+            selectecdCurrency.isEmpty == false,
+            currencyConverterView.enteredAmount > 0 {
+            currencyConverterView.exchangeRates(visible: true)
             currencyConverterView.currencyCollectionView.reloadData()
         }
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField.tag == CurrencyConverterView.currencyInputTextFieldTag {
-            textField.text = viewModel.currencies.first?.key
+        else {
+            currencyConverterView.exchangeRates(visible: false)
         }
     }
 }
+
+// MARK: - UIPickerView Delegates
 
 extension ExchangeRatesViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -112,17 +103,19 @@ extension ExchangeRatesViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        viewModel.supportedCurrencies.count
+        viewModel.currencies.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        viewModel.supportedCurrencies[row]
+        viewModel.currencies[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currencyConverterView.currencySelectorTextField.text = viewModel.supportedCurrencies[row]
+        currencyConverterView.selectedCurrency = viewModel.currencies[row]
     }
 }
+
+// MARK: - UICollectionView Delegates
 
 extension ExchangeRatesViewController : UICollectionViewDataSource {
     
@@ -131,15 +124,24 @@ extension ExchangeRatesViewController : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCollectionViewCell.reuseIdentifier, for: indexPath) as? CurrencyCollectionViewCell else { return UICollectionViewCell() }
         
-        // Todo: Optimizaiton needed !
-        let key = Array(viewModel.currencies.keys)[indexPath.item]
+        guard let selectedCurrency = currencyConverterView.selectedCurrency else { return cell }
+        guard let selectedCurrencyBaseAmount = viewModel.exchangeRates[selectedCurrency] else { return cell }
         
-        if let value = viewModel.currencies[key] {
-            cell.configure(name: key, rate: value)
-        }
+        let destinationCurrency = viewModel.currencies[indexPath.item]
+        guard let destinationCurrencyBaseAmount = viewModel.exchangeRates[destinationCurrency] else { return cell }
         
+        let amount = currencyConverterView.enteredAmount
+        
+        let convertedAmount = currencyConverter.convert(
+            from: Currency(code: selectedCurrency, amount: selectedCurrencyBaseAmount),
+            to: Currency(code: destinationCurrency, amount: destinationCurrencyBaseAmount),
+            for: amount
+        )
+        
+        cell.configure(name: destinationCurrency, rate: convertedAmount)
         return cell
     }
 }

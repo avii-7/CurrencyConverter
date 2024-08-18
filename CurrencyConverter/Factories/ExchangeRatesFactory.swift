@@ -21,7 +21,8 @@ struct ExchangeRatesFactory {
             requestTimeService: requestTimeService
         )
         let vm = ExchangeRatesViewModel(exchangeRateRepository: repository)
-        let vc = ExchangeRatesViewController(viewModel: vm)
+        let converter = CurrencyConverterUtility()
+        let vc = ExchangeRatesViewController(viewModel: vm, currencyConverter: converter)
         return vc
     }
 }

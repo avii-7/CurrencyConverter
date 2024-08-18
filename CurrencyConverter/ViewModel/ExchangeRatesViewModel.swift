@@ -9,14 +9,9 @@ import Foundation
 
 class ExchangeRatesViewModel {
     
-    // Todo: Should be optional
-    var exchangeRates = ExchangeRates()
+    private(set) var exchangeRates = [String: Double]()
     
-    private(set) var currencies = [String: Double]()
-    
-    var currencyConverter = CurrencyConverter()
-    
-    var supportedCurrencies = [String]()
+    private(set) var currencies = [String]()
     
     let exchangeRatesRepository: ExchangeRatesRepository
 
@@ -30,23 +25,13 @@ class ExchangeRatesViewModel {
             
             switch result {
             case .success(let exchangeRates):
-                self.exchangeRates = exchangeRates
-                supportedCurrencies = Array(exchangeRates.rates.keys)
-                currencyConverter = CurrencyConverter(currencies: exchangeRates.rates)
+                self.exchangeRates = exchangeRates.rates
+                currencies = exchangeRates.rates.keys.sorted()
             case .failure(let error):
                 throw error
             }
         }
     }
     
-    func onAmountEntered(amount: Double, currency selectedCurrency: String) {
-        
-        currencies.removeAll(keepingCapacity: true)
-        
-        for currencyRate in exchangeRates.rates {
-            let currency = currencyRate.key
-            let convertedPrice = currencyConverter.convert(from: selectedCurrency, to: currency, for: amount)
-            currencies[currency] = convertedPrice
-        }
-    }
+    //func onAmountEntered(amount: Double, selectedCurrency: String) { }
 }

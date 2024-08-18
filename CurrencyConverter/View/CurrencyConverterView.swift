@@ -9,22 +9,17 @@ import UIKit
 
 class CurrencyConverterView: UIView {
     
-    static let currencySelectorTextFieldTag = 1
-    
-    static let currencyInputTextFieldTag = 2
-    
     private let horizontalSpacing: CGFloat = 15
     
     private let verticalSpacing: CGFloat = 20
     
-    let currencyInputTextField: UITextField = {
+    let currencyAmountTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Enter an amount"
         textField.borderStyle = .roundedRect
         textField.keyboardType = .decimalPad
         textField.textAlignment = .center
-        textField.tag = currencyInputTextFieldTag
         return textField
     }()
     
@@ -32,10 +27,8 @@ class CurrencyConverterView: UIView {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Select currency"
-        textField.text = "INR"
         textField.borderStyle = .roundedRect
         textField.tintColor = .clear
-        textField.tag = currencySelectorTextFieldTag
         return textField
     }()
     
@@ -60,7 +53,10 @@ class CurrencyConverterView: UIView {
         let label = UILabel()
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Enter an amount to view conversions"
+        label.text = "Enter an amount and choose currency to view exchange rates"
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
+        label.numberOfLines = 0
         return label
         
     }()
@@ -72,6 +68,22 @@ class CurrencyConverterView: UIView {
         activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
+    
+    var enteredAmount: Double {
+        if
+            let amountString = currencyAmountTextField.text,
+            let amount = Double(amountString) {
+            return amount
+        }
+        else {
+            return 0
+        }
+    }
+    
+    var selectedCurrency: String? {
+        get { currencySelectorTextField.text }
+        set { currencySelectorTextField.text = newValue }
+    }
     
     init() {
         super.init(frame: .zero)
@@ -93,6 +105,41 @@ class CurrencyConverterView: UIView {
         currencySelectorTextField.inputView = currencySelectorPickerView
         currencySelectorTextField.inputAccessoryView = getToolbarWithDoneButton()
     }
+
+    @objc
+    private func donePicker() {
+        exchangeRates(visible: enteredAmount > 0)
+        currencyCollectionView.reloadData()
+        currencySelectorTextField.resignFirstResponder()
+    }
+    
+    func animate(value: Bool) {
+        if value {
+            activityIndicatorView.isHidden = false
+            currencyAmountTextField.isEnabled = false
+            currencySelectorTextField.isEnabled = false
+            activityIndicatorView.startAnimating()
+        }
+        else {
+            currencyAmountTextField.isEnabled = true
+            currencySelectorTextField.isEnabled = true
+            activityIndicatorView.stopAnimating()
+        }
+    }
+    
+    func exchangeRates(visible: Bool) {
+        if visible {
+            currencyCollectionView.isHidden = false
+            placeholderLabel.isHidden = true
+        }
+        else {
+            currencyCollectionView.isHidden = true
+            placeholderLabel.isHidden = false
+        }
+    }
+}
+
+extension CurrencyConverterView {
     
     private func getToolbarWithDoneButton() -> UIToolbar {
         let toolBar = UIToolbar()
@@ -111,34 +158,8 @@ class CurrencyConverterView: UIView {
         return toolBar
     }
     
-    @objc
-    private func donePicker() {
-        currencySelectorTextField.resignFirstResponder()
-    }
-    
-    func animate(value: Bool) {
-        if value {
-            activityIndicatorView.isHidden = false
-            currencyInputTextField.isEnabled = false
-            currencySelectorTextField.isEnabled = false
-            currencyCollectionView.isHidden = true
-            
-            activityIndicatorView.startAnimating()
-        }
-        else {
-            currencyInputTextField.isEnabled = true
-            currencySelectorTextField.isEnabled = true
-            currencyCollectionView.isHidden = false
-            
-            activityIndicatorView.stopAnimating()
-        }
-    }
-}
-
-extension CurrencyConverterView {
-    
     private func addSubviews() {
-        addSubview(currencyInputTextField)
+        addSubview(currencyAmountTextField)
         addSubview(currencySelectorTextField)
         addSubview(currencyCollectionView)
         addSubview(activityIndicatorView)
@@ -149,12 +170,12 @@ extension CurrencyConverterView {
         NSLayoutConstraint.activate([
             
             // For currency input field
-            currencyInputTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: verticalSpacing),
-            currencyInputTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: horizontalSpacing),
-            currencyInputTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -horizontalSpacing),
+            currencyAmountTextField.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: verticalSpacing),
+            currencyAmountTextField.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: horizontalSpacing),
+            currencyAmountTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -horizontalSpacing),
             
             // For currency selector button
-            currencySelectorTextField.topAnchor.constraint(equalTo: currencyInputTextField.bottomAnchor, constant: verticalSpacing),
+            currencySelectorTextField.topAnchor.constraint(equalTo: currencyAmountTextField.bottomAnchor, constant: verticalSpacing),
             currencySelectorTextField.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -horizontalSpacing),
             
             // For collection view
@@ -171,8 +192,6 @@ extension CurrencyConverterView {
             placeholderLabel.centerYAnchor.constraint(equalTo: currencyCollectionView.centerYAnchor),
             placeholderLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: horizontalSpacing),
             placeholderLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -horizontalSpacing),
-            
-            
         ])
     }
 }
