@@ -72,7 +72,7 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
             }
 
             let currentTime = Date.now
-            if let timeDiff =  Calendar.current.dateComponents([.minute], from: currentTime, to: requestTime).minute {
+            if let timeDiff =  Calendar.current.dateComponents([.minute], from: requestTime, to: currentTime).minute {
                 return .success(timeDiff > 15)
             }
             else {

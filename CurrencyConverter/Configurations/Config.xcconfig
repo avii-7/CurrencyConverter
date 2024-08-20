@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  CurrencyConverter
+//
+//  Created by Arun on 20/08/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APP_ID=74e2b51314ad43748a7bd32216a13b63

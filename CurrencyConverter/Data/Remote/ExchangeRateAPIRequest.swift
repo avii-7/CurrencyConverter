@@ -28,7 +28,10 @@ extension ExchangeRateAPIRequest : RestAPIRequest {
     }
     
     var queryItems: [URLQueryItem]? {
-        [URLQueryItem(name: "app_id", value: "74e2b51314ad43748a7bd32216a13b63")]
+        if let appId: String = try? Configuration.appId.value() {
+          return [URLQueryItem(name: "app_id", value: appId)]
+        }
+        return nil
     }
 }
 

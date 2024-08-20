@@ -108,7 +108,7 @@ class CurrencyConverterView: UIView {
 
     @objc
     private func donePicker() {
-        exchangeRates(visible: enteredAmount > 0)
+        exchangeRates(visible: enteredAmount > 0 && currencyAmountTextField.text?.isEmpty == false)
         currencyCollectionView.reloadData()
         currencySelectorTextField.resignFirstResponder()
     }

@@ -19,14 +19,18 @@ final class HttpUtility {
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
-        if
-            let httpResponse = response as? HTTPURLResponse,
-            200...299 ~= httpResponse.statusCode {
-            let model = try JSONDecoder().decode(T.self, from: data)
-            return model
+        guard let httpResponse = response as? HTTPURLResponse else { throw URLError(.badServerResponse) }
+        
+        guard 200...299 ~= httpResponse.statusCode else {
+            throw NSError(
+                domain: "HTTP Error",
+                code: httpResponse.statusCode,
+                userInfo: [ NSLocalizedDescriptionKey: "Invalid status code: \(httpResponse.statusCode)" ]
+            )
         }
         
-        throw URLError(.badServerResponse)
+        let model = try JSONDecoder().decode(T.self, from: data)
+        return model
     }
     
     private func prepareURLRequest(from request: RestAPIRequest) throws -> URLRequest? {

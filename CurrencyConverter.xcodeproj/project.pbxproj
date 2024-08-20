@@ -34,6 +34,7 @@
 		862C1C302C6D21F400B2F613 /* MockCurrencyResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C1C2F2C6D21F400B2F613 /* MockCurrencyResource.swift */; };
 		862C1C322C6D236400B2F613 /* MockCurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C1C312C6D236400B2F613 /* MockCurrencyRepository.swift */; };
 		862C1C352C6D290000B2F613 /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862C1C342C6D290000B2F613 /* MockUserDefaults.swift */; };
+		864BC3CB2C74858700CE4A78 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864BC3CA2C74858700CE4A78 /* Configuration.swift */; };
 		8661A8D52C71BBCF00AD2CD2 /* CurrencyConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8661A8D42C71BBCF00AD2CD2 /* CurrencyConverter.swift */; };
 		86A4BF7A2C70F02C00F90C38 /* LocalExchangeRatesSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4BF792C70F02C00F90C38 /* LocalExchangeRatesSource.swift */; };
 		86A4BF7C2C70F13000F90C38 /* ExchangeRateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86A4BF7B2C70F13000F90C38 /* ExchangeRateError.swift */; };
@@ -88,6 +89,8 @@
 		862C1C2F2C6D21F400B2F613 /* MockCurrencyResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCurrencyResource.swift; sourceTree = "<group>"; };
 		862C1C312C6D236400B2F613 /* MockCurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCurrencyRepository.swift; sourceTree = "<group>"; };
 		862C1C342C6D290000B2F613 /* MockUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
+		864BC3C92C74826A00CE4A78 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		864BC3CA2C74858700CE4A78 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		8661A8D42C71BBCF00AD2CD2 /* CurrencyConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverter.swift; sourceTree = "<group>"; };
 		86A4BF792C70F02C00F90C38 /* LocalExchangeRatesSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalExchangeRatesSource.swift; sourceTree = "<group>"; };
 		86A4BF7B2C70F13000F90C38 /* ExchangeRateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateError.swift; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 				86A4BF942C7138C000F90C38 /* Factories */,
 				862C1BE52C6CA60A00B2F613 /* Helpers */,
 				862C1BDA2C6C909600B2F613 /* Controller */,
+				864BC3C82C74824D00CE4A78 /* Configurations */,
 				862C1BA52C6C906800B2F613 /* AppDelegate.swift */,
 				862C1BA72C6C906800B2F613 /* SceneDelegate.swift */,
 				862C1BB12C6C906900B2F613 /* Assets.xcassets */,
@@ -259,6 +263,15 @@
 				862C1C342C6D290000B2F613 /* MockUserDefaults.swift */,
 			);
 			path = MockImplementations;
+			sourceTree = "<group>";
+		};
+		864BC3C82C74824D00CE4A78 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				864BC3CA2C74858700CE4A78 /* Configuration.swift */,
+				864BC3C92C74826A00CE4A78 /* Config.xcconfig */,
+			);
+			path = Configurations;
 			sourceTree = "<group>";
 		};
 		8661A8D32C71BBAF00AD2CD2 /* Converter */ = {
@@ -480,6 +493,7 @@
 				862C1C182C6D063000B2F613 /* ExchangeRateEntity+Extensions.swift in Sources */,
 				86A4BF8E2C71219700F90C38 /* ExchangeRateResponse+Extensions.swift in Sources */,
 				86A4BF852C70F58200F90C38 /* RequestTimeEnum.swift in Sources */,
+				864BC3CB2C74858700CE4A78 /* Configuration.swift in Sources */,
 				862C1BFA2C6CC9B300B2F613 /* ExchangeRatesViewModel.swift in Sources */,
 				862C1BEC2C6CAC4800B2F613 /* RestAPIRequest.swift in Sources */,
 				862C1BE72C6CA61A00B2F613 /* CurrencyConverterUtility.swift in Sources */,
@@ -663,6 +677,7 @@
 		};
 		862C1BD02C6C906900B2F613 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 864BC3C92C74826A00CE4A78 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
