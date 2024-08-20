@@ -15,9 +15,14 @@ CurrencyConverter integrates with the [Open Exchange Rates API](https://openexch
 
 - `GET https://openexchangerates.org/api/latest.json`
 
-To use this API, you need to create a free account on Open Exchange Rates and obtain your `appid`. Once you have the `appid`, you can add it to the `queryItems` property in the `ExchangeRateAPIRequest` enum to start fetching real-time exchange rates.
+To use this API, you need to create a free account on Open Exchange Rates and obtain your `appid`.
+
+## Environment Variables
+
+To run this project, you will need to create `Config.xcconfig` and add it to the `Configurations` folder. Then, add the `APP_ID` variable with the value you obtained in the previous step.
 
 ## Technology Stack
 - **Swift**
 - **UIKit**
 - **Core Data**
+- **XC Test**
