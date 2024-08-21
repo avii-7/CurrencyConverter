@@ -18,7 +18,12 @@ class CombinedExchangeRatesRepositoryStub: ExchangeRatesRepository {
             return .failure(error)
         }
         else {
-            return .success(ExchangeRates(baseCurrency: "USD", rates: ["USD": 1.0, "INR": 83.936204, "CAD": 1.369639]))
+            let rates = [
+                Currency(code: "USD", baseAmount: 1.0),
+                Currency(code: "INR", baseAmount: 83.936204),
+                Currency(code: "CAD", baseAmount: 1.369639)
+            ]
+            return .success(ExchangeRates(baseCurrency: "USD", rates: rates))
         }
     }
     
@@ -35,8 +40,4 @@ class CombinedExchangeRatesRepositoryStub: ExchangeRatesRepository {
 //            return Calendar.current.date(byAdding: .minute, value: 20, to: Date.now)
 //        }
 //    }
-    
-    func removeExistingCurrencies() { }
-    
-    func saveCurrencyRates(exchangeRate: ExchangeRateResponse) { }
 }

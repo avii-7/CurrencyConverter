@@ -10,57 +10,86 @@ import XCTest
 
 final class CurrencyViewModelTests: XCTestCase {
     
-    private var viewModel: ExchangeRatesViewModel!
+    private var sut: ExchangeRatesViewModel!
     
-    private var mockCurrencyResource: MockCurrencyResource!
-    
-    private var mockCurrencyRepository: MockCurrencyRepository!
+    private var repositoryStub: CombinedExchangeRatesRepositoryStub!
 
     override func setUp() {
-        mockCurrencyResource = MockCurrencyResource()
-        mockCurrencyRepository = MockCurrencyRepository()
-        viewModel = ExchangeRatesViewModel(repository: mockCurrencyRepository, currencyResource: mockCurrencyResource)
+        repositoryStub = CombinedExchangeRatesRepositoryStub()
+        sut = ExchangeRatesViewModel(exchangeRateRepository: repositoryStub)
     }
 
     override func tearDown() {
-        viewModel = nil
-        mockCurrencyResource = nil
-        mockCurrencyRepository = nil
+        sut = nil
+        repositoryStub = nil
     }
     
-    func testFetchNewCurrenciesIfTimeDifferenceIsMoreThan15Minutes() {
+    func testFetchExchangeRates_Success() async throws {
+        try await sut.fetchExchangeRates()
         
-        // Set the last request time to be 15 minutes ago
-        mockCurrencyRepository.cache = false
+        XCTAssertEqual(sut.currencies.count, 3)
+    }
+    
+    func testFetchExchangeRates_MockLocalFailure() async throws {
         
-        let expectation = XCTestExpectation(description: "Fetch currencies")
+        let mockError = ExchangeRateError.localData(description: "mock local error")
+        repositoryStub.error = mockError
         
-        viewModel.fetchCurrencies {
-            // Verify that the mock resource was called
-            XCTAssertTrue(self.mockCurrencyResource.didFetchNewRates)
-            expectation.fulfill()
+        do {
+            try await sut.fetchExchangeRates()
         }
-        
-        wait(for: [expectation], timeout: 2.0)
-    }
-
-    
-    func testFetchCachedCurrenciesIfTimeDifferenceIsLessThan15Minutes() {
-        
-        // Set the last request time to be with in 15 minutes
-        mockCurrencyRepository.cache = true
-        
-        let expectation = XCTestExpectation(description: "Fetch currencies")
-        
-        viewModel.fetchCurrencies {
-            // Verify that the mock resource was not called or not
-            XCTAssertFalse(self.mockCurrencyResource.didFetchNewRates)
-            expectation.fulfill()
+        catch {
+            XCTAssertEqual(error as! ExchangeRateError, mockError)
         }
-        
-        wait(for: [expectation], timeout: 2.0)
+        XCTAssertEqual(sut.currencies.count, 0)
     }
-
-
     
+    func testFetchExchangeRates_RemoteMockFailure() async throws {
+        
+        let mockError = ExchangeRateError.remoteData(description: "mock remote error")
+        repositoryStub.error = mockError
+        
+        do {
+            try await sut.fetchExchangeRates()
+        }
+        catch {
+            XCTAssertEqual(error as! ExchangeRateError, mockError)
+        }
+        XCTAssertEqual(sut.currencies.count, 0)
+    }
 }
+
+/**
+ //    func testFetchNewCurrenciesIfTimeDifferenceIsMoreThan15Minutes() {
+ //
+ //        // Set the last request time to be 15 minutes ago
+ //        mockCurrencyRepository.cache = false
+ //
+ //        let expectation = XCTestExpectation(description: "Fetch currencies")
+ //
+ //        viewModel.fetchCurrencies {
+ //            // Verify that the mock resource was called
+ //            XCTAssertTrue(self.mockCurrencyResource.didFetchNewRates)
+ //            expectation.fulfill()
+ //        }
+ //
+ //        wait(for: [expectation], timeout: 2.0)
+ //    }
+ //
+ //
+ //    func testFetchCachedCurrenciesIfTimeDifferenceIsLessThan15Minutes() {
+ //
+ //        // Set the last request time to be with in 15 minutes
+ //        mockCurrencyRepository.cache = true
+ //
+ //        let expectation = XCTestExpectation(description: "Fetch currencies")
+ //
+ //        viewModel.fetchCurrencies {
+ //            // Verify that the mock resource was not called or not
+ //            XCTAssertFalse(self.mockCurrencyResource.didFetchNewRates)
+ //            expectation.fulfill()
+ //        }
+ //
+ //        wait(for: [expectation], timeout: 2.0)
+ //    }
+ */
