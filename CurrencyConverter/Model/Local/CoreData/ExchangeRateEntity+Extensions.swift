@@ -10,12 +10,15 @@ import Foundation
 extension ExchangeRateEntity {
     
     func convertToDomain() -> ExchangeRates {
-        guard
-            let rates = self.exchangeRates,
-            let ratesDictionary = try? JSONSerialization.jsonObject(with: rates, options: []) as? [String: Double] else {
-            return ExchangeRates(baseCurrency: baseCurrency ?? "", rates: [:])
+        
+        guard let rates = self.currencies else {
+            return ExchangeRates(baseCurrency: baseCurrency ?? "", rates: [])
         }
-
-        return ExchangeRates(baseCurrency: baseCurrency ?? "", rates: ratesDictionary)
+        
+        let ratesArray = rates.map { entity in
+            return Currency(code: entity.code, baseAmount: entity.baseAmount.decimalValue)
+        }
+        
+        return ExchangeRates(baseCurrency: baseCurrency ?? "", rates: ratesArray)
     }
 }

@@ -11,10 +11,15 @@ class ExchangeRates {
     
     let baseCurrency: String
     
-    var rates: [String: Double]
+    var rates: [Currency]
     
-    init(baseCurrency: String, rates: [String : Double]) {
+    init(baseCurrency: String, rates: [Currency]) {
         self.baseCurrency = baseCurrency
         self.rates = rates
     }
+}
+
+struct Currency {
+    let code: String
+    let baseAmount: Decimal
 }

@@ -34,10 +34,16 @@ class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
             let exchangeRateEntity = ExchangeRateEntity(context: persistentMannager.context)
             exchangeRateEntity.baseCurrency = exchangeRates.baseCurrency
             
-            let ratesData = try JSONSerialization.data(withJSONObject: exchangeRates.rates, options: [])
-            exchangeRateEntity.exchangeRates = ratesData
+            let currencyEntites = exchangeRates.rates.map {
+                let entity = CurrencyEntity(context: persistentMannager.context)
+                entity.baseAmount = NSDecimalNumber(decimal: $0.baseAmount)
+                entity.code = $0.code
+                return entity
+            }
             
-            try persistentMannager.context.save()
+            exchangeRateEntity.currencies = Set(currencyEntites)
+            
+            try persistentMannager.saveContext()
             return .success(())
         }
         catch {
@@ -54,7 +60,7 @@ class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
             for entity in entities {
                 persistentMannager.context.delete(entity)
             }
-            try persistentMannager.context.save()
+            try persistentMannager.saveContext()
             return .success(())
         } catch {
             return .failure(.localData(description: error.localizedDescription))

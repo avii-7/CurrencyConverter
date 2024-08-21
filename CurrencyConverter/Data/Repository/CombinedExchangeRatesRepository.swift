@@ -63,6 +63,7 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
     
     // Todo: What about error handling in below function ?
     private func shouldFetchNewExchangeRates() async -> Result<Bool, ExchangeRateError> {
+        
         let requestTimeResult = await requestTimeService.getLastRequestTime(for: .exchangeRates)
         switch requestTimeResult {
         case .success(let requestTime):

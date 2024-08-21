@@ -9,9 +9,7 @@ import Foundation
 
 class ExchangeRatesViewModel {
     
-    private(set) var exchangeRates = [String: Double]()
-    
-    private(set) var currencies = [String]()
+    private(set) var currencies = [Currency]()
     
     let exchangeRatesRepository: ExchangeRatesRepository
 
@@ -20,18 +18,13 @@ class ExchangeRatesViewModel {
     }
     
     func fetchExchangeRates() async throws {
-        Task {
-            let result = await exchangeRatesRepository.getAllExchangeRates()
-            
-            switch result {
-            case .success(let exchangeRates):
-                self.exchangeRates = exchangeRates.rates
-                currencies = exchangeRates.rates.keys.sorted()
-            case .failure(let error):
-                throw error
-            }
+        let result = await exchangeRatesRepository.getAllExchangeRates()
+        switch result {
+        case .success(let exchangeRates):
+            self.currencies = exchangeRates.rates
+            self.currencies.sort { $0.code < $1.code }
+        case .failure(let error):
+            throw error
         }
     }
-    
-    //func onAmountEntered(amount: Double, selectedCurrency: String) { }
 }

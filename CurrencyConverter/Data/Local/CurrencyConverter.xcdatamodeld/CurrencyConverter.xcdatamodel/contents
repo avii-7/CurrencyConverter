@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22225" systemVersion="23G93" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CurrencyEntity" representedClassName="CurrencyEntity" syncable="YES">
+        <attribute name="baseAmount" attributeType="Decimal"/>
+        <attribute name="code" attributeType="String"/>
+        <relationship name="exchangeRates" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ExchangeRateEntity" inverseName="currencies" inverseEntity="ExchangeRateEntity"/>
+    </entity>
     <entity name="ExchangeRateEntity" representedClassName="ExchangeRateEntity" syncable="YES">
         <attribute name="baseCurrency" optional="YES" attributeType="String"/>
-        <attribute name="exchangeRates" optional="YES" attributeType="Binary"/>
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CurrencyEntity" inverseName="exchangeRates" inverseEntity="CurrencyEntity"/>
     </entity>
 </model>

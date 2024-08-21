@@ -43,9 +43,9 @@ class CurrencyCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(name: String, rate: Double) {
+    func configure(name: String, rate: Decimal) {
         currecyNameLabel.text = name
-        currecyRateLabel.text = "\(rate.rounded(digits: 4))"
+        currecyRateLabel.text = "\(rate)"
     }
 }
 

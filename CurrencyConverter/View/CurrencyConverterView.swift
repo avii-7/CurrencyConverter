@@ -69,10 +69,10 @@ class CurrencyConverterView: UIView {
         return activityIndicator
     }()
     
-    var enteredAmount: Double {
+    var enteredAmount: Decimal {
         if
             let amountString = currencyAmountTextField.text,
-            let amount = Double(amountString) {
+            let amount = Decimal(string: amountString) {
             return amount
         }
         else {

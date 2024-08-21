@@ -9,12 +9,11 @@ import Foundation
 
 struct CurrencyConverterUtility: CurrencyConverter {
 
-    func convert(from currency1: Currency, to currency2: Currency, for amount: Double) -> Double {
+    func convert(from currency1: Currency, to currency2: Currency, for amount: Decimal) -> Decimal {
         
-        let baseCurrencyPrice = amount / currency1.amount
-        
-        let finalPrice = baseCurrencyPrice * currency2.amount
-        
+        let baseCurrencyPrice = amount / currency1.baseAmount
+        var finalPrice = baseCurrencyPrice * currency2.baseAmount
+        finalPrice.round(2, .bankers)
         return finalPrice
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ExchangeRateError : Error, LocalizedError {
+enum ExchangeRateError : Error, LocalizedError, Equatable {
     
     case localData(description: String)
     case remoteData(description: String)

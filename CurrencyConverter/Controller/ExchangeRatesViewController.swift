@@ -52,6 +52,7 @@ class ExchangeRatesViewController: UIViewController {
                 self.currencyConverterView.currencyCollectionView.reloadData()
             }
             catch {
+                debugPrint(error)
                 // Todo: show alert
             }
         }
@@ -107,11 +108,11 @@ extension ExchangeRatesViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        viewModel.currencies[row]
+        viewModel.currencies[row].code
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currencyConverterView.selectedCurrency = viewModel.currencies[row]
+        currencyConverterView.selectedCurrency = viewModel.currencies[row].code
     }
 }
 
@@ -127,21 +128,23 @@ extension ExchangeRatesViewController : UICollectionViewDataSource {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CurrencyCollectionViewCell.reuseIdentifier, for: indexPath) as? CurrencyCollectionViewCell else { return UICollectionViewCell() }
         
-        guard let selectedCurrency = currencyConverterView.selectedCurrency else { return cell }
-        guard let selectedCurrencyBaseAmount = viewModel.exchangeRates[selectedCurrency] else { return cell }
+        let selectedCurrencyIndex = currencyConverterView.currencySelectorPickerView.selectedRow(inComponent: 0)
         
-        let destinationCurrency = viewModel.currencies[indexPath.item]
-        guard let destinationCurrencyBaseAmount = viewModel.exchangeRates[destinationCurrency] else { return cell }
+        let selectedCurrencyCode = viewModel.currencies[selectedCurrencyIndex].code
+        let selectedCurrencyBaseAmount = viewModel.currencies[selectedCurrencyIndex].baseAmount
+        
+        let destinationCurrencyCode = viewModel.currencies[indexPath.item].code
+        let destinationCurrencyBaseAmount = viewModel.currencies[indexPath.item].baseAmount
         
         let amount = currencyConverterView.enteredAmount
         
         let convertedAmount = currencyConverter.convert(
-            from: Currency(code: selectedCurrency, amount: selectedCurrencyBaseAmount),
-            to: Currency(code: destinationCurrency, amount: destinationCurrencyBaseAmount),
+            from: Currency(code: selectedCurrencyCode, baseAmount: selectedCurrencyBaseAmount),
+            to: Currency(code: destinationCurrencyCode, baseAmount: destinationCurrencyBaseAmount),
             for: amount
         )
         
-        cell.configure(name: destinationCurrency, rate: convertedAmount)
+        cell.configure(name: destinationCurrencyCode, rate: convertedAmount)
         return cell
     }
 }
