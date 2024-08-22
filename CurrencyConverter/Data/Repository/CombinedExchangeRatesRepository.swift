@@ -53,9 +53,22 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
         
         switch remoteResult {
         case .success(let response):
-            _ = await requestTimeService.saveLastRequestTime(for: .exchangeRates, date: .now)
-            _ = await localDataSource.saveExchangeRates(exchangeRates: response)
-            return .success(response)
+            let removeResult = await localDataSource.removeExchangeRates()
+            
+            switch removeResult {
+            case .success:
+                let saveResult = await localDataSource.saveExchangeRates(exchangeRates: response)
+                
+                switch saveResult {
+                case .success:
+                    _ = await requestTimeService.saveLastRequestTime(for: .exchangeRates, date: .now)
+                    return .success(response)
+                case .failure(let error):
+                    return .failure(error)
+                }
+            case .failure(let error):
+                return .failure(error)
+            }
         case .failure(let error):
             return .failure(error)
         }
@@ -71,7 +84,7 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
             guard let requestTime else {
                 return .success(true)
             }
-
+            
             let currentTime = Date.now
             if let timeDiff =  Calendar.current.dateComponents([.minute], from: requestTime, to: currentTime).minute {
                 return .success(timeDiff > 15)

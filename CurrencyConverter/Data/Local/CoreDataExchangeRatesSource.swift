@@ -12,7 +12,7 @@ class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
     
     private let persistentMannager: PersistentManager
     
-    init(persistentMannager: PersistentManager = PersistentManager.shared) {
+    init(persistentMannager: PersistentManager) {
         self.persistentMannager = persistentMannager
     }
     

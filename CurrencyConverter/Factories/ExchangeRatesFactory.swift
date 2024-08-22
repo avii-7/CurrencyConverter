@@ -11,7 +11,9 @@ struct ExchangeRatesFactory {
     
     static func makeModule() -> ExchangeRatesViewController {
         
-        let localSource = CoreDataExchangeRatesSource()
+        let persistenceManager = PersistentManager.shared
+        let localSource = CoreDataExchangeRatesSource(persistentMannager: persistenceManager)
+        
         let remoteSource = RESTAPIExchangeRatesSource()
         let requestTimeService = UserDefaultsRequestTime()
 

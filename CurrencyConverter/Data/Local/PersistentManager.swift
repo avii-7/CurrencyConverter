@@ -10,50 +10,39 @@ import CoreData
 
 class PersistentManager {
     
-    // MARK: - Singleton
-    
-    private init() { }
-    
     static let shared = PersistentManager()
     
-    // MARK: - Core Data stack
+    private let container: NSPersistentContainer
     
-    lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "CurrencyConverter")
+    let context: NSManagedObjectContext
+    
+    init(inMemory: Bool = false) {
+        container = NSPersistentContainer(name: "CurrencyConverter")
+        
+        if inMemory {
+            container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
+        }
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
-        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        return container
-    }()
-    
-    lazy var context = persistentContainer.viewContext
-    
-    var taskContext: NSManagedObjectContext {
-        let context = persistentContainer.newBackgroundContext()
-        context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
-        return context
+        
+        context = container.viewContext
+        context.automaticallyMergesChangesFromParent = true
     }
     
-    func saveTaskContext(context: NSManagedObjectContext) {
-        if context.hasChanges {
-            do {
-                try context.save()
-                context.reset()
-            }
-            catch {
-                print(error)
-            }
-        }
-    }
-
     // MARK: - Core Data Saving support
 
     func saveContext () throws {
-        if context.hasChanges {
-            try context.save()
+        do {
+            if context.hasChanges {
+                try context.save()
+            }
+        }
+        catch {
+            context.rollback()
+            throw error
         }
     }
 }
