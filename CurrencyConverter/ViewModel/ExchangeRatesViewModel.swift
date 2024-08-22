@@ -22,7 +22,6 @@ class ExchangeRatesViewModel {
         switch result {
         case .success(let exchangeRates):
             self.currencies = exchangeRates.rates
-            self.currencies.sort { $0.code < $1.code }
         case .failure(let error):
             throw error
         }

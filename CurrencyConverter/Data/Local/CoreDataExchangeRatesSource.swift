@@ -41,7 +41,7 @@ class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
                 return entity
             }
             
-            exchangeRateEntity.currencies = Set(currencyEntites)
+            exchangeRateEntity.currencies = NSOrderedSet(array: currencyEntites)
             
             try persistentMannager.saveContext()
             return .success(())

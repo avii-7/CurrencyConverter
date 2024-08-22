@@ -19,7 +19,7 @@ class ExchangeRates {
     }
 }
 
-struct Currency {
+struct Currency: Equatable {
     let code: String
     let baseAmount: Decimal
 }

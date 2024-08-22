@@ -7,6 +7,6 @@
     </entity>
     <entity name="ExchangeRateEntity" representedClassName="ExchangeRateEntity" syncable="YES">
         <attribute name="baseCurrency" optional="YES" attributeType="String"/>
-        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CurrencyEntity" inverseName="exchangeRates" inverseEntity="CurrencyEntity"/>
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="CurrencyEntity" inverseName="exchangeRates" inverseEntity="CurrencyEntity"/>
     </entity>
 </model>

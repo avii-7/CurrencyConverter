@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OrderedCollections
 
 struct ExchangeRateResponse: Decodable {
     
@@ -33,8 +34,16 @@ struct ExchangeRateResponse: Decodable {
         self.license = try container.decode(String.self, forKey: .license)
         self.timestamp = try container.decode(Date.self, forKey: .timestamp)
         self.base = try container.decode(String.self, forKey: .base)
-        let ratesDictionary = try container.decode([String: Decimal].self, forKey: .rates)
-        self.rates = ratesDictionary.map { CurrencyResponse(code: $0, baseAmount: $1) }
+        
+        let ratesDictionary = try container.decode(Dictionary<String, Decimal>.self, forKey: .rates)
+        let keys = ratesDictionary.keys.sorted()
+        
+        self.rates = keys.compactMap({ key in
+            if let value = ratesDictionary[key] {
+                return CurrencyResponse(code: key, baseAmount: value)
+            }
+            return nil
+        })
     }
 }
 
