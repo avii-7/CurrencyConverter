@@ -32,6 +32,7 @@ class ExchangeRatesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTitle()
         configureCurrencyInputTextField()
         configureCurrencySelectorTextField()
         configCollectionView()
@@ -42,6 +43,12 @@ class ExchangeRatesViewController: UIViewController {
         
         currencyConverterView.animate(value: true)
         fetchExchangeRates()
+    }
+    
+    private func setTitle() {
+        title = "Currency Converter"
+        navigationController?.navigationBar.titleTextAttributes
+        = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .title1)]
     }
     
     private func fetchExchangeRates() {

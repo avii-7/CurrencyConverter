@@ -20,6 +20,7 @@ class CurrencyConverterView: UIView {
         textField.borderStyle = .roundedRect
         textField.keyboardType = .decimalPad
         textField.textAlignment = .center
+        textField.layer.borderColor = UIColor.systemBlue.cgColor
         return textField
     }()
     
@@ -29,6 +30,7 @@ class CurrencyConverterView: UIView {
         textField.placeholder = "Select currency"
         textField.borderStyle = .roundedRect
         textField.tintColor = .clear
+        textField.layer.borderColor = UIColor.systemBlue.cgColor
         return textField
     }()
     
