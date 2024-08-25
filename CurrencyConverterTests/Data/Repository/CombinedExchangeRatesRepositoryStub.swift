@@ -18,12 +18,7 @@ class CombinedExchangeRatesRepositoryStub: ExchangeRatesRepository {
             return .failure(error)
         }
         else {
-            let rates = [
-                Currency(code: "USD", baseAmount: 1.0),
-                Currency(code: "INR", baseAmount: 83.936204),
-                Currency(code: "CAD", baseAmount: 1.369639)
-            ]
-            return .success(ExchangeRates(baseCurrency: "USD", rates: rates))
+            return .success(ExchangeRates.testGetLocal())
         }
     }
     

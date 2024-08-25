@@ -68,36 +68,13 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
         }
         
         return .success(response)
-        /*
-         switch remoteResult {
-        case .success(let response):
-            let removeResult = await localDataSource.removeExchangeRates()
-            
-            switch removeResult {
-            case .success:
-                let saveResult = await localDataSource.saveExchangeRates(exchangeRates: response)
-                
-                switch saveResult {
-                case .success:
-                    _ = await requestTimeService.saveLastRequestTime(for: .exchangeRates, date: .now)
-                    return .success(response)
-                case .failure(let error):
-                    return .failure(error)
-                }
-            case .failure(let error):
-                return .failure(error)
-            }
-        case .failure(let error):
-            return .failure(error)
-        }
-         */
     }
     
     private func fetchRemoteExchangeRates() async -> Result<ExchangeRates, ExchangeRateError> {
         await remoteDataSource.getLatestCurrencyRates()
     }
     
-    private func removeLocalExchangeRates() async -> Result<Void, ExchangeRateError> {
+   private func removeLocalExchangeRates() async -> Result<Void, ExchangeRateError> {
         await localDataSource.removeExchangeRates()
     }
     

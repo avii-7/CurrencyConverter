@@ -3,4 +3,480 @@
    uuid = "FF4C54CC-6E7C-474A-BE11-B9C7E052C49B"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "843CACD9-B8A2-495B-BEAA-57754729D893"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "getAllExchangeRates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "843CACD9-B8A2-495B-BEAA-57754729D893 - ded6550c1d5634ec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.getAllExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  uuid = "843CACD9-B8A2-495B-BEAA-57754729D893 - dfcd55ca06fdf175"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.getAllExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "843CACD9-B8A2-495B-BEAA-57754729D893 - 2efbba7b6d5ff8ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.getAllExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "44">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5290F35B-D39E-4E8C-869F-95FFBB251330"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "fetchAndDBSyncExchangeRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E274D422-27B3-49FD-84ED-2B00B04CA9EE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "fetchAndDBSyncExchangeRates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E274D422-27B3-49FD-84ED-2B00B04CA9EE - 3ee75a36f3427cfa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "E274D422-27B3-49FD-84ED-2B00B04CA9EE - 9657f30e2ec7120a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "E274D422-27B3-49FD-84ED-2B00B04CA9EE - 29430989b57b30fc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "76">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C5B980E-DB1F-4568-B293-76DF97408B91"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "fetchAndDBSyncExchangeRates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6C5B980E-DB1F-4568-B293-76DF97408B91 - 29430989b57b4f43"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "6C5B980E-DB1F-4568-B293-76DF97408B91 - b9d843f978f0a9b3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) await resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "6C5B980E-DB1F-4568-B293-76DF97408B91 - 502fc7637fb08b41"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "84">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7350170F-25EA-4877-A90C-29245B4B0EA0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "shouldFetchNewExchangeRates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7350170F-25EA-4877-A90C-29245B4B0EA0 - cdf9a87f658c2579"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.shouldFetchNewExchangeRates() async -&gt; Swift.Result&lt;Swift.Bool, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "7350170F-25EA-4877-A90C-29245B4B0EA0 - 7fa73aefc57bc7b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.shouldFetchNewExchangeRates() async -&gt; Swift.Result&lt;Swift.Bool, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "7350170F-25EA-4877-A90C-29245B4B0EA0 - cad705188fb5697f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.shouldFetchNewExchangeRates() async -&gt; Swift.Result&lt;Swift.Bool, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A7576C55-E49A-4033-9954-4CD565ED7F36"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "shouldFetchNewExchangeRates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A7576C55-E49A-4033-9954-4CD565ED7F36 - cad705188fb568b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.shouldFetchNewExchangeRates() async -&gt; Swift.Result&lt;Swift.Bool, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "A7576C55-E49A-4033-9954-4CD565ED7F36 - cad705188fb568b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.shouldFetchNewExchangeRates() async -&gt; Swift.Result&lt;Swift.Bool, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "228">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CAB2B42A-612B-4BD7-BC04-DAA06D0204DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "shouldFetchNewExchangeRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CE33AA1-D914-4118-9D79-1EF26E1DB740"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "fetchAndDBSyncExchangeRates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5CE33AA1-D914-4118-9D79-1EF26E1DB740 - 29430989b57b30df"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "5CE33AA1-D914-4118-9D79-1EF26E1DB740 - 502fc7637fb0f4dd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "308">
+               </Location>
+               <Location
+                  uuid = "5CE33AA1-D914-4118-9D79-1EF26E1DB740 - 5a8bf23a21e648d3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "304">
+               </Location>
+               <Location
+                  uuid = "5CE33AA1-D914-4118-9D79-1EF26E1DB740 - 4577a19dea1f0cd1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(9) suspend resume partial function for CurrencyConverter.CombinedExchangeRatesRepository.fetchAndDBSyncExchangeRates() async -&gt; Swift.Result&lt;CurrencyConverter.ExchangeRates, CurrencyConverter.ExchangeRateError&gt;"
+                  moduleName = "CurrencyConverter"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/avii/Desktop/My%20Projects/CurrencyConverter/CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "51"
+                  endingLineNumber = "51"
+                  offsetFromSymbolStart = "236">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01CF361F-67CA-487B-BDDB-BDA4DE308F44"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "fetchAndDBSyncExchangeRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1C22637C-48AE-4D98-83BE-A4CD632CC37A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Repository/CombinedExchangeRatesRepository.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "fetchAndDBSyncExchangeRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20FFF16F-9DE3-4004-9ED8-1F602C737EA3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverter/Data/Remote/RESTAPIExchangeRatesSource.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "getLatestCurrencyRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF195929-DC42-4B95-8B65-C836C9DDDC5D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CurrencyConverterTests/Data/Remote/RemoteExchangeRatesSourceStub.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "getLatestCurrencyRates()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
