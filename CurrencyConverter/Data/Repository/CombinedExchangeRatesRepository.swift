@@ -22,7 +22,6 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
     }
     
     func getAllExchangeRates() async -> Result<ExchangeRates, ExchangeRateError> {
-        
         let shouldFetchResult = await shouldFetchNewExchangeRates()
         
         switch shouldFetchResult {
@@ -41,17 +40,36 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
             case .failure(let error):
                 return .failure(error)
             }
-            
         case .failure(let error):
             return .failure(error)
         }
     }
     
-    // Todo: Should I declare them private or not ? - Helper methods
     private func fetchAndDBSyncExchangeRates() async -> Result<ExchangeRates, ExchangeRateError> {
-        let remoteResult = await remoteDataSource.getLatestCurrencyRates()
         
-        switch remoteResult {
+        let remoteResult = await fetchRemoteExchangeRates()
+        guard case .success(let response) = remoteResult else {
+            return remoteResult
+        }
+        
+        let removeResult = await removeLocalExchangeRates()
+        guard case .success = removeResult else {
+            return removeResult.map { response }
+        }
+        
+        let saveResult = await saveExchangeRates(response)
+        guard case .success = saveResult else {
+            return saveResult.map { response }
+        }
+        
+        let updateTimeResult = await updateLastRequestTime()
+        guard case .success = updateTimeResult else {
+            return updateTimeResult.map { _ in response }
+        }
+        
+        return .success(response)
+        /*
+         switch remoteResult {
         case .success(let response):
             let removeResult = await localDataSource.removeExchangeRates()
             
@@ -72,9 +90,25 @@ class CombinedExchangeRatesRepository: ExchangeRatesRepository {
         case .failure(let error):
             return .failure(error)
         }
+         */
     }
     
-    // Todo: What about error handling in below function ?
+    private func fetchRemoteExchangeRates() async -> Result<ExchangeRates, ExchangeRateError> {
+        await remoteDataSource.getLatestCurrencyRates()
+    }
+    
+    private func removeLocalExchangeRates() async -> Result<Void, ExchangeRateError> {
+        await localDataSource.removeExchangeRates()
+    }
+    
+    private func saveExchangeRates(_ exchangeRates: ExchangeRates) async -> Result<Void, ExchangeRateError> {
+        await localDataSource.saveExchangeRates(exchangeRates: exchangeRates)
+    }
+    
+    private func updateLastRequestTime() async -> Result<Void, ExchangeRateError> {
+        await requestTimeService.saveLastRequestTime(for: .exchangeRates, date: .now)
+    }
+    
     private func shouldFetchNewExchangeRates() async -> Result<Bool, ExchangeRateError> {
         
         let requestTimeResult = await requestTimeService.getLastRequestTime(for: .exchangeRates)

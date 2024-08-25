@@ -15,7 +15,7 @@ class UserDefaultsRequestTime: RequestTime {
         self.userDefaults = userDefaults
     }
     
-    func getLastRequestTime(for entity: RequestTimeEntity) async -> Result<Date?, RequestTimeError> {
+    func getLastRequestTime(for entity: RequestTimeEntity) async -> Result<Date?, ExchangeRateError> {
         if let result = userDefaults.object(forKey: entity.rawValue) as? Date {
             return .success(result)
         }
@@ -23,7 +23,7 @@ class UserDefaultsRequestTime: RequestTime {
         return .success(nil)
     }
     
-    func saveLastRequestTime(for entity: RequestTimeEntity, date: Date) async -> Result<Void, RequestTimeError> {
+    func saveLastRequestTime(for entity: RequestTimeEntity, date: Date) async -> Result<Void, ExchangeRateError> {
         userDefaults.set(date, forKey: entity.rawValue)
         return .success(())
     }

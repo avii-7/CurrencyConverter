@@ -9,9 +9,9 @@ import Foundation
 
 protocol RequestTime {
     
-    func getLastRequestTime(for entity: RequestTimeEntity) async -> Result<Date?, RequestTimeError>
+    func getLastRequestTime(for entity: RequestTimeEntity) async -> Result<Date?, ExchangeRateError>
     
-    func saveLastRequestTime(for entity: RequestTimeEntity, date: Date) async -> Result<Void, RequestTimeError>
+    func saveLastRequestTime(for entity: RequestTimeEntity, date: Date) async -> Result<Void, ExchangeRateError>
 }
 
 
