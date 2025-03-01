@@ -7,10 +7,18 @@
 
 import Foundation
 
+@MainActor
 struct ExchangeRatesFactory {
     
     static func makeModule() -> ExchangeRatesViewController {
         
+        let vm = getViewModel()
+        let converter = CurrencyConverterUtility()
+        let vc = ExchangeRatesViewController(viewModel: vm, currencyConverter: converter)
+        return vc
+    }
+    
+    static func getViewModel() -> ExchangeRatesViewModel {
         let persistenceManager = PersistentManager.shared
         let localSource = CoreDataExchangeRatesSource(persistentMannager: persistenceManager)
         
@@ -23,8 +31,6 @@ struct ExchangeRatesFactory {
             requestTimeService: requestTimeService
         )
         let vm = ExchangeRatesViewModel(exchangeRateRepository: repository)
-        let converter = CurrencyConverterUtility()
-        let vc = ExchangeRatesViewController(viewModel: vm, currencyConverter: converter)
-        return vc
+        return vm
     }
 }

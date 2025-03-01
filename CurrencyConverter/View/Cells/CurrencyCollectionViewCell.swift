@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyCollectionViewCell: UICollectionViewCell {
+final class CurrencyCollectionViewCell: UICollectionViewCell {
     
     static let reuseIdentifier = "CurrencyCollectionViewCell"
     
@@ -69,7 +69,6 @@ extension CurrencyCollectionViewCell {
             currecyRateLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: horizontalSpacing),
             currecyRateLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -horizontalSpacing),
             currecyRateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -horizontalSpacing),
-            
         ])
     }
 }

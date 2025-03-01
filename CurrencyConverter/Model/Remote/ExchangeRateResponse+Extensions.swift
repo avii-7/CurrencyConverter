@@ -12,7 +12,7 @@ extension ExchangeRateResponse {
     func convertToDomain() -> ExchangeRates {
         ExchangeRates(
             baseCurrency: self.base,
-            rates: self.rates.map({ Currency(code: $0.code, baseAmount: $0.baseAmount) })
+            rates: self.rates.map({ Currency(id: UUID(), code: $0.code, baseAmount: $0.baseAmount) })
         )
     }
 }

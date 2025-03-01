@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol RequestTime {
+protocol RequestTime: Sendable {
     
     func getLastRequestTime(for entity: RequestTimeEntity) async -> Result<Date?, ExchangeRateError>
     

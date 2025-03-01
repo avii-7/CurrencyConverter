@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UserDefaultsRequestTime: RequestTime {
+final class UserDefaultsRequestTime: RequestTime {
     
     private let userDefaults: UserDefaults
     

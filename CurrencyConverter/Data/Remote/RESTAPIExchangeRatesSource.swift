@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RESTAPIExchangeRatesSource: RemoteExchangeRatesSource {
+final class RESTAPIExchangeRatesSource: RemoteExchangeRatesSource {
     
     func getLatestCurrencyRates() async -> Result<ExchangeRates, ExchangeRateError> {
         do {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CurrencyConverterView: UIView {
+final class CurrencyConverterView: UIView {
     
     private let horizontalSpacing: CGFloat = 15
     

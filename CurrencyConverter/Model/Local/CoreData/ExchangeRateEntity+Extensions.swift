@@ -18,7 +18,7 @@ extension ExchangeRateEntity {
 
         let ratesArray = rates.compactMap { entity in
             if let currencyEntity = entity as? CurrencyEntity {
-                return Currency(code: currencyEntity.code, baseAmount: currencyEntity.baseAmount.decimalValue)
+                return Currency(id: currencyEntity.id, code: currencyEntity.code, baseAmount: currencyEntity.baseAmount.decimalValue)
             }
             return nil
         }

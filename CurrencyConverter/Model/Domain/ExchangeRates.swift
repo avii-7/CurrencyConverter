@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ExchangeRates {
+struct ExchangeRates {
     
     let baseCurrency: String
     
@@ -19,7 +19,14 @@ class ExchangeRates {
     }
 }
 
-struct Currency: Equatable {
+struct Currency: Equatable, Identifiable {
+    let id: UUID
     let code: String
     let baseAmount: Decimal
+    
+    init(id: UUID = .init(), code: String, baseAmount: Decimal) {
+        self.id = id
+        self.code = code
+        self.baseAmount = baseAmount
+    }
 }

@@ -7,23 +7,33 @@
 
 import Foundation
 
-class ExchangeRatesViewModel {
+@MainActor
+final class ExchangeRatesViewModel: ObservableObject {
     
-    private(set) var currencies = [Currency]()
+    @Published var currencies = [Currency]()
     
-    let exchangeRatesRepository: ExchangeRatesRepository
+    var filteredCurrencies: [Currency] {
+        guard amount > 0 else { return [] }
+        return currencies
+    }
+    
+    @Published var amount = 0
+    
+    @Published var selectedCurrency = "INR"
 
-    init(exchangeRateRepository: ExchangeRatesRepository) {
+    let exchangeRatesRepository: ExchangeRatesRepository
+    
+    nonisolated init(exchangeRateRepository: ExchangeRatesRepository) {
         self.exchangeRatesRepository = exchangeRateRepository
     }
     
-    func fetchExchangeRates() async throws {
+    func fetchExchangeRates() async {
         let result = await exchangeRatesRepository.getAllExchangeRates()
         switch result {
         case .success(let exchangeRates):
             self.currencies = exchangeRates.rates
         case .failure(let error):
-            throw error
+            debugPrint(error)
         }
     }
 }

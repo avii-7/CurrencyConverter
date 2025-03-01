@@ -24,8 +24,9 @@ final class CurrencyViewModelTests: XCTestCase {
         repositoryStub = nil
     }
     
+    @MainActor
     func testFetchExchangeRates_Success() async throws {
-        try await sut.fetchExchangeRates()
+        await sut.fetchExchangeRates()
         
         XCTAssertEqual(sut.currencies.count, 3)
     }

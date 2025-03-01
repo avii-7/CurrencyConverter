@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol RemoteExchangeRatesSource {
+protocol RemoteExchangeRatesSource: Sendable {
     func getLatestCurrencyRates() async -> Result<ExchangeRates, ExchangeRateError>
 }

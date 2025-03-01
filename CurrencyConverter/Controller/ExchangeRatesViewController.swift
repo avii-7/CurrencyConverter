@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ExchangeRatesViewController: UIViewController {
+final class ExchangeRatesViewController: UIViewController {
     
     private var currencyConverterView: CurrencyConverterView!
     
@@ -52,16 +52,10 @@ class ExchangeRatesViewController: UIViewController {
     }
     
     private func fetchExchangeRates() {
-        Task { @MainActor in
-            do {
-                try await viewModel.fetchExchangeRates()
-                self.currencyConverterView.animate(value: false)
-                self.currencyConverterView.currencyCollectionView.reloadData()
-            }
-            catch {
-                debugPrint(error)
-                // Todo: show alert
-            }
+        Task {
+            await viewModel.fetchExchangeRates()
+            self.currencyConverterView.animate(value: false)
+            self.currencyConverterView.currencyCollectionView.reloadData()
         }
     }
     
@@ -137,21 +131,27 @@ extension ExchangeRatesViewController : UICollectionViewDataSource {
         
         let selectedCurrencyIndex = currencyConverterView.currencySelectorPickerView.selectedRow(inComponent: 0)
         
-        let selectedCurrencyCode = viewModel.currencies[selectedCurrencyIndex].code
-        let selectedCurrencyBaseAmount = viewModel.currencies[selectedCurrencyIndex].baseAmount
+        let selectedCurrency = viewModel.currencies[selectedCurrencyIndex]
         
-        let destinationCurrencyCode = viewModel.currencies[indexPath.item].code
-        let destinationCurrencyBaseAmount = viewModel.currencies[indexPath.item].baseAmount
-        
+        let destinationCurrency = viewModel.currencies[indexPath.item]
+
         let amount = currencyConverterView.enteredAmount
         
         let convertedAmount = currencyConverter.convert(
-            from: Currency(code: selectedCurrencyCode, baseAmount: selectedCurrencyBaseAmount),
-            to: Currency(code: destinationCurrencyCode, baseAmount: destinationCurrencyBaseAmount),
+            from: Currency(
+                id: selectedCurrency.id,
+                code: selectedCurrency.code,
+                baseAmount: selectedCurrency.baseAmount
+            ),
+            to: Currency(
+                id: destinationCurrency.id,
+                code: destinationCurrency.code,
+                baseAmount: destinationCurrency.baseAmount
+            ),
             for: amount
         )
         
-        cell.configure(name: destinationCurrencyCode, rate: convertedAmount)
+        cell.configure(name: destinationCurrency.code, rate: convertedAmount)
         return cell
     }
 }

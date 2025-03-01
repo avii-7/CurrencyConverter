@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
+final class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
     
     private let persistentMannager: PersistentManager
     
@@ -36,6 +36,7 @@ class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
             
             let currencyEntites = exchangeRates.rates.map {
                 let entity = CurrencyEntity(context: persistentMannager.context)
+                entity.id = $0.id
                 entity.baseAmount = NSDecimalNumber(decimal: $0.baseAmount)
                 entity.code = $0.code
                 return entity

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LocalExchangeRatesSource {
+protocol LocalExchangeRatesSource: Sendable {
     
     func getExchangeRates() async -> Result<ExchangeRates?, ExchangeRateError>
     

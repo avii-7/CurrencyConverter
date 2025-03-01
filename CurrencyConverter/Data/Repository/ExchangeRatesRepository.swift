@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ExchangeRatesRepository {
+protocol ExchangeRatesRepository: Sendable {
 
     func getAllExchangeRates() async -> Result<ExchangeRates, ExchangeRateError>
 }

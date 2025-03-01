@@ -2,7 +2,7 @@
 //  CurrencyEntity+CoreDataProperties.swift
 //  CurrencyConverter
 //
-//  Created by Arun on 22/08/24.
+//  Created by Arun on 28/08/24.
 //
 //
 
@@ -18,6 +18,7 @@ extension CurrencyEntity {
 
     @NSManaged public var baseAmount: NSDecimalNumber
     @NSManaged public var code: String
+    @NSManaged public var id: UUID
     @NSManaged public var exchangeRates: ExchangeRateEntity?
 
 }
