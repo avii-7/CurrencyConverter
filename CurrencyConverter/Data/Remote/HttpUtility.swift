@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class HttpUtility {
+final class HttpUtility: Sendable {
     
     private init() { }
     

@@ -8,7 +8,7 @@
 import Foundation
 @testable import CurrencyConverter
 
-class LocalExchangeRatesSourceStub: LocalExchangeRatesSource {
+final class LocalExchangeRatesSourceStub: LocalExchangeRatesSource {
     
     var throwGet: ExchangeRateError? = nil
     

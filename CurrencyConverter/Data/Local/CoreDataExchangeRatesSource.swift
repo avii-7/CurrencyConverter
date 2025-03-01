@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
+final class CoreDataExchangeRatesSource: LocalExchangeRatesSource {
     
     private let persistentMannager: PersistentManager
     

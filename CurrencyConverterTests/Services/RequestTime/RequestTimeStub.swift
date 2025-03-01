@@ -8,7 +8,7 @@
 import Foundation
 @testable import CurrencyConverter
 
-class RequestTimeStub: RequestTime {
+final class RequestTimeStub: RequestTime {
     
     var error: ExchangeRateError?
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ExchangeRates {
+struct ExchangeRates {
     
     let baseCurrency: String
     

@@ -25,23 +25,22 @@ final class CurrencyViewModelTests: XCTestCase {
     }
     
     func testFetchExchangeRates_Success() async throws {
-        try await sut.fetchExchangeRates()
+        let currencies = try await sut.fetchExchangeRates()
         
-        XCTAssertEqual(sut.currencies.count, 3)
+        XCTAssertEqual(currencies.count, 3)
     }
     
     func testFetchExchangeRates_MockLocalFailure() async throws {
         
         let mockError = ExchangeRateError.localData(description: "mock local error")
         repositoryStub.error = mockError
-        
+
         do {
-            try await sut.fetchExchangeRates()
+            _ = try await sut.fetchExchangeRates()
         }
         catch {
             XCTAssertEqual(error as! ExchangeRateError, mockError)
         }
-        XCTAssertEqual(sut.currencies.count, 0)
     }
     
     func testFetchExchangeRates_RemoteMockFailure() async throws {
@@ -50,12 +49,11 @@ final class CurrencyViewModelTests: XCTestCase {
         repositoryStub.error = mockError
         
         do {
-            try await sut.fetchExchangeRates()
+            _ = try await sut.fetchExchangeRates()
         }
         catch {
             XCTAssertEqual(error as! ExchangeRateError, mockError)
         }
-        XCTAssertEqual(sut.currencies.count, 0)
     }
 }
 

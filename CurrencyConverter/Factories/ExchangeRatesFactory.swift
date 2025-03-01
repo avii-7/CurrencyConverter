@@ -9,6 +9,7 @@ import Foundation
 
 struct ExchangeRatesFactory {
     
+    @MainActor
     static func makeModule() -> ExchangeRatesViewController {
         
         let persistenceManager = PersistentManager.shared

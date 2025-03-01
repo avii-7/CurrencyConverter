@@ -8,7 +8,7 @@
 import Foundation
 @testable import CurrencyConverter
 
-class InMemoryPersistentManager : PersistentManager {
+final class InMemoryPersistentManager : PersistentManager {
     
     private override init(inMemory: Bool = false) {
         super.init(inMemory: inMemory)

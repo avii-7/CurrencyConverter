@@ -15,6 +15,8 @@ class ExchangeRatesViewController: UIViewController {
     
     private let currencyConverter: CurrencyConverter
     
+    private var currencies = [Currency]()
+    
     init(viewModel: ExchangeRatesViewModel, currencyConverter: CurrencyConverter) {
         self.viewModel = viewModel
         self.currencyConverter = currencyConverter
@@ -52,16 +54,15 @@ class ExchangeRatesViewController: UIViewController {
     }
     
     private func fetchExchangeRates() {
-        Task { @MainActor in
+        Task {
             do {
-                try await viewModel.fetchExchangeRates()
-                self.currencyConverterView.animate(value: false)
-                self.currencyConverterView.currencyCollectionView.reloadData()
+                self.currencies = try await viewModel.fetchExchangeRates()
             }
             catch {
-                debugPrint(error)
-                // Todo: show alert
+                print("Error: \(error)")
             }
+            self.currencyConverterView.animate(value: false)
+            self.currencyConverterView.currencyCollectionView.reloadData()
         }
     }
     
@@ -111,15 +112,15 @@ extension ExchangeRatesViewController: UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        viewModel.currencies.count
+        currencies.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        viewModel.currencies[row].code
+        currencies[row].code
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        currencyConverterView.selectedCurrency = viewModel.currencies[row].code
+        currencyConverterView.selectedCurrency = currencies[row].code
     }
 }
 
@@ -128,7 +129,7 @@ extension ExchangeRatesViewController: UIPickerViewDelegate, UIPickerViewDataSou
 extension ExchangeRatesViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.currencies.count
+        currencies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -137,11 +138,11 @@ extension ExchangeRatesViewController : UICollectionViewDataSource {
         
         let selectedCurrencyIndex = currencyConverterView.currencySelectorPickerView.selectedRow(inComponent: 0)
         
-        let selectedCurrencyCode = viewModel.currencies[selectedCurrencyIndex].code
-        let selectedCurrencyBaseAmount = viewModel.currencies[selectedCurrencyIndex].baseAmount
+        let selectedCurrencyCode = currencies[selectedCurrencyIndex].code
+        let selectedCurrencyBaseAmount = currencies[selectedCurrencyIndex].baseAmount
         
-        let destinationCurrencyCode = viewModel.currencies[indexPath.item].code
-        let destinationCurrencyBaseAmount = viewModel.currencies[indexPath.item].baseAmount
+        let destinationCurrencyCode = currencies[indexPath.item].code
+        let destinationCurrencyBaseAmount = currencies[indexPath.item].baseAmount
         
         let amount = currencyConverterView.enteredAmount
         

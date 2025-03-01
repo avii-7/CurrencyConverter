@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CombinedExchangeRatesRepository: ExchangeRatesRepository {
+final class CombinedExchangeRatesRepository: ExchangeRatesRepository {
     
     let localDataSource: LocalExchangeRatesSource
     

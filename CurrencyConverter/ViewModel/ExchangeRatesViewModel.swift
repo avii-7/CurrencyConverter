@@ -7,23 +7,22 @@
 
 import Foundation
 
-class ExchangeRatesViewModel {
-    
-    private(set) var currencies = [Currency]()
-    
-    let exchangeRatesRepository: ExchangeRatesRepository
+final class ExchangeRatesViewModel: Sendable {
+
+    private let exchangeRatesRepository: ExchangeRatesRepository
 
     init(exchangeRateRepository: ExchangeRatesRepository) {
         self.exchangeRatesRepository = exchangeRateRepository
     }
     
-    func fetchExchangeRates() async throws {
+    func fetchExchangeRates() async throws -> [Currency] {
         let result = await exchangeRatesRepository.getAllExchangeRates()
         switch result {
         case .success(let exchangeRates):
-            self.currencies = exchangeRates.rates
+            return exchangeRates.rates
         case .failure(let error):
-            throw error
+            print("Error while fetching currencies: \(error)")
+            throw error    
         }
     }
 }

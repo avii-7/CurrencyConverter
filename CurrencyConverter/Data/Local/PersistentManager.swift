@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import CoreData
+@preconcurrency import CoreData
 
-class PersistentManager {
+class PersistentManager: @unchecked Sendable {
     
     static let shared = PersistentManager()
     
